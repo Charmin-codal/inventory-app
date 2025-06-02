@@ -1,5 +1,5 @@
 const express = require("express");
-const initializeDatabase = require("./config/initDb");
+const cors = require("cors");
 const errorHandler = require("./middleware/errorHandler");
 
 const itemRoutes = require("./routes/itemRoutes");
@@ -9,6 +9,7 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("API is running");
+  res.json({ message: "API is running" });
 });
 
 app.use("/api/users", userRoutes);
