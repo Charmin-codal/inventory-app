@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
+    "migrate": "node src/config/migrations.js",
     "init-db": "node src/config/initDb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
