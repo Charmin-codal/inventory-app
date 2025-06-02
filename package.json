@@ -1,12 +1,11 @@
 {
   "name": "inventory-app",
   "version": "1.0.0",
-  "main": "src/app.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
-    "migrate": "node src/config/migrations.js",
-    "vercel-build": "echo 'Build step completed'"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js",
+    "migrate": "node src/config/migrations.js"
   },
   "keywords": [],
   "author": "",
