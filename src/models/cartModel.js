@@ -28,7 +28,7 @@ async function addToCart(item_id, quantity) {
 
 async function getCartItems() {
     const result = await pool.query(
-        'SELECT ci.id, ci.quantity, ci.added_at, i.name, i.price FROM cart_items ci JOIN items i ON ci.item_id = i.id'
+      "SELECT ci.id, ci.item_id, ci.quantity, ci.added_at, i.name, i.description, i.price, i.quantity as stock_quantity FROM cart_items ci JOIN items i ON ci.item_id = i.id"
     );
     return result.rows;
 }

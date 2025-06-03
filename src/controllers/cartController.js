@@ -2,23 +2,64 @@ const Cart = require('../models/cartModel');
 
 exports.addItem = async (req, res) => {
     try {
-        const { item_id, quantity } = req.body;
-        if (!item_id || !quantity) {
-            return res.status(400).json({ error: 'Missing item_id or quantity' });
+        console.log("Request body:", req.body);
+
+        if (!req.body) {
+          return res.status(400).json({
+            success: false,
+            error: "Request body is missing",
+          });
         }
+
+        const { item_id, quantity } = req.body;
+
+        if (!item_id || !quantity) {
+          return res.status(400).json({
+            success: false,
+            error: "Missing required fields",
+            details: {
+              item_id: !item_id ? "item_id is required" : null,
+              quantity: !quantity ? "quantity is required" : null,
+            },
+          });
+        }
+
         const newItem = await Cart.addToCart(item_id, quantity);
-        res.status(201).json(newItem);
+        res.status(201).json({
+          success: true,
+          data: newItem,
+        });
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        console.error("Error adding item to cart:", err);
+        res.status(400).json({
+          success: false,
+          error: err.message,
+        });
     }
 };
 
 exports.getItems = async (req, res) => {
     try {
         const items = await Cart.getCartItems();
-        res.json(items);
+        res.json({
+          success: true,
+          data: items.map((item) => ({
+            id: item.id,
+            item_id: item.item_id,
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            quantity: item.quantity,
+            stock_quantity: item.stock_quantity,
+            added_at: item.added_at,
+          })),
+        });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        console.error("Error getting cart items:", err);
+        res.status(500).json({
+          success: false,
+          error: err.message,
+        });
     }
 };
 
