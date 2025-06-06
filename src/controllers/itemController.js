@@ -1,9 +1,10 @@
 const pool = require("../config/db");
+const client = require("../config/db");
 const db = require("../config/db");
 // Get all items
 exports.getItems = async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM items");
+    const result = await client.query("SELECT * FROM items");
     res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
