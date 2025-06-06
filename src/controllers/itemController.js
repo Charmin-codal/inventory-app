@@ -1,5 +1,5 @@
 const pool = require("../config/db");
-
+const db = require("../config/db");
 // Get all items
 exports.getItems = async (req, res) => {
   try {
