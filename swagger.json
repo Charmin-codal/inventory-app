@@ -29,7 +29,7 @@
       "description": "Local development server"
     },
     {
-      "url": "https://inventory-app-zffs.onrender.com/",
+      "url": "https://inventory-app-zffs.onrender.com",
       "description": "Production server"
     }
   ],
