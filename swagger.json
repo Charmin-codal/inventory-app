@@ -508,7 +508,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/wishlist/add": {
       "post": {
         "tags": ["Wishlist"],
         "summary": "Add item to wishlist",
@@ -655,7 +657,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "itemId": {
+                  "item_id": {
                     "type": "integer"
                   },
                   "quantity": {
