@@ -47,46 +47,83 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "The auto-generated id of the item"
           },
           "name": {
-            "type": "string"
-          },
-          "quantity": {
-            "type": "integer"
+            "type": "string",
+            "description": "The name of the item"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "The description of the item"
           },
           "price": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "The price of the item"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "The available quantity of the item"
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the item"
+          },
+          "image_url": {
+            "type": "string",
+            "description": "The URL of the item image"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last update timestamp"
           }
         },
-        "required": ["name", "quantity", "price"]
+        "required": ["name", "price", "quantity"]
       },
       "ItemInput": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "example": "Product Name"
-          },
-          "quantity": {
-            "type": "integer",
-            "example": 10
+            "example": "Product Name",
+            "description": "Name of the item"
           },
           "description": {
             "type": "string",
-            "example": "Product description"
+            "example": "Product description",
+            "description": "Description of the item"
           },
           "price": {
             "type": "number",
             "format": "float",
-            "example": 99.99
+            "example": 99.99,
+            "description": "Price of the item"
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 10,
+            "description": "Available quantity"
+          },
+          "category": {
+            "type": "string",
+            "example": "Electronics",
+            "description": "Category of the item"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "description": "Image file of the item (jpg, jpeg, png, gif)"
           }
         },
-        "required": ["name", "quantity", "price"]
+        "required": ["name", "price", "quantity"]
       },
       "User": {
         "type": "object",

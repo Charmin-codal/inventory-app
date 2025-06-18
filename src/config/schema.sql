@@ -10,13 +10,31 @@ CREATE TABLE IF NOT EXISTS users (
 -- Create items table
 CREATE TABLE IF NOT EXISTS items (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     description TEXT,
     price DECIMAL(10,2) NOT NULL,
     stock_quantity INTEGER NOT NULL DEFAULT 0,
+    category VARCHAR(100),
+    image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Add new columns if they don't exist
+DO $$ 
+BEGIN
+    -- Add category column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                  WHERE table_name = 'items' AND column_name = 'category') THEN
+        ALTER TABLE items ADD COLUMN category VARCHAR(100);
+    END IF;
+
+    -- Add image_url column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                  WHERE table_name = 'items' AND column_name = 'image_url') THEN
+        ALTER TABLE items ADD COLUMN image_url VARCHAR(255);
+    END IF;
+END $$;
 
 -- Create cart table
 CREATE TABLE IF NOT EXISTS cart (
